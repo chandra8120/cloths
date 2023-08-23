@@ -1,0 +1,11 @@
+.image-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+  }
+  .image-container  {
+    transition: transform 0.2s;
+  }
+  .image-container:hover  {
+    transform: scale(1.1); /* Adjust the scaling factor as needed */
+  }
