@@ -4,12 +4,11 @@ import DrawerAppBar from "./Main";
 import { Button, Stack } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Data } from "./Total";
-import "./home.css"
+import "./home.css";
 import Footer from "./Footer";
 const Home = () => {
-  const { loading, addToCart, data,user} = useContext(Data);
+  const { loading, addToCart, data, user } = useContext(Data);
   const [selectedProduct, setSelectedProduct] = useState("");
-  
 
   const handleProduct = (item) => {
     setSelectedProduct(item);
@@ -30,18 +29,12 @@ const Home = () => {
       ) : null}
 
       {selectedProduct === "" ? (
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 20,
-            minWidth: "280px",
-          }}
+        <div className="selectproduct"
+        
         >
-          {data.filter((ele,ind)=>ele.title.includes(user)).map((ele) => (
-            <div className="image-container"
+          {data.map((ele) => (
+            <div
+              className="image-container"
               style={{
                 width: "23%",
                 height: "102%",
@@ -53,7 +46,6 @@ const Home = () => {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-              
               }}
               key={ele.id}
             >
@@ -61,7 +53,7 @@ const Home = () => {
                 style={{
                   width: "90%",
                   height: "200px",
-                  marginLeft:"22px"
+                  marginLeft: "22px",
                 }}
               >
                 <img
@@ -71,30 +63,20 @@ const Home = () => {
                     height: "100%",
                     cursor: "pointer",
                   }}
-                  src={ele.image}   alt="img"
+                  src={`data:image/png;base64,${ele.image}`}
+                  alt="img"
                 />
               </div>
-             <div image-container>
-              {ele.title}
-              {ele.price}
-               </div>
+              <div image-container>
+               
+                <p>Name : {ele.name}</p>
+                <p>Price : {ele.price}</p>
+                <a href={ele.link}>Buy Now</a>
+              </div>
               <div style={{ display: "flex", gap: 10 }}>
-                
-                <Button 
-                  sx={{ height: "20%" }}
-                  color="secondary"
-                  onClick={() => {
-                    addToCart(ele);
-                    alert("Successfully added cart");
-                  }}
-                >
-                  Add Cart
-                </Button>
-          
-                <Button  onClick={() => handleProduct(ele)}>
-                  Details
-                </Button>
-            
+              
+
+                <Button onClick={() => handleProduct(ele)}>View Details</Button>
               </div>
             </div>
           ))}
@@ -103,6 +85,7 @@ const Home = () => {
         <div style={{ background: "lightblue", marginTop: "-4%" }}>
           <div
             style={{
+              
               background: "lightblue",
               width: "100%",
               marginTop: "10px",
@@ -110,6 +93,7 @@ const Home = () => {
           >
             <div
               style={{
+                border:"2px solid red",
                 width: "20%",
                 height: "80%",
                 minWidth: "200px",
@@ -119,9 +103,10 @@ const Home = () => {
                 marginLeft: "30%",
                 background: "white",
               }}
-            >
+             >
               <div
                 style={{
+                
                   width: "100%",
                   height: "230px",
                   cursor: "pointer",
@@ -133,26 +118,32 @@ const Home = () => {
                     height: "100%",
                     cursor: "pointer",
                   }}
-                  src={selectedProduct?.image}
+                  src={
+                    selectedProduct?.image
+                      ? `data:image/png;base64,${selectedProduct.image}`
+                      : ""
+                  }
                   alt="img"
                 />
+
                 {selectedProduct?.title}
                 {selectedProduct?.price}
               </div>
-            </div>
-          </div>
-          <Button
+              <Button
             variant="contained"
-            sx={{ width: "20%", margin: "1% 30%" }}
+            sx={{ width: "100%" }}
             onClick={() => setSelectedProduct("")}
           >
             Close
           </Button>
+            </div>
+            
+          </div>
           
         </div>
       )}
 
-     <Footer />
+      <Footer />
     </div>
   );
 };

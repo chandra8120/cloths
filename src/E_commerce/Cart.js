@@ -51,7 +51,7 @@ const Cart = () => {
                       height: "100%",
                       cursor: "pointer",
                     }}
-                    src={ele.image}
+                    src={`data:image/png;base64,${ele.image}`} 
                     alt="img"
                   />
                 </div>

@@ -37,7 +37,7 @@ const Total = ({ children }) => {
 
   useEffect(() => {
     setLoading(true);
-     fetch("https://fakestoreapi.com/products")
+     fetch("https://practise-be.onrender.com/getshirts")
       .then((res) => res.json())
       .then((data1) => {
         setData(data1);

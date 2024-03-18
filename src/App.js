@@ -1,16 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-import Routing from './E_commerce/Routing';
-import Total from './E_commerce/Total';
 
-function App() {
+import React from 'react'
+import Total from './E_commerce/Total'
+import Routing from './E_commerce/Routing'
+import "./App.css"
+const App = () => {
   return (
-    <div className="App">
-     <Total>
-      <Routing />
-     </Total>
+    <div className='App'>
+      <Total>
+        <Routing />
+      </Total>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
